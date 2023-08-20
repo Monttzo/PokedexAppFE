@@ -38,9 +38,9 @@ class App extends Component {
         email: this.email.value,
         password: this.password.value
       }
-      axios.post('/pokedexapp/api/auth/login/', user).then(async (response) => {
+      axios.post('/api2/api/auth/login/', user).then(async (response) => {
         let accessToken = response.data.access_token;
-        axios.post('/pokedexapp/api/auth/me/',{}, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
+        axios.post('/api2/api/auth/me/',{}, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
           let user = response.data;
           alert('Login successfully');
           this.setState({user: user,modalLogIn:false,token:accessToken});
@@ -55,7 +55,7 @@ class App extends Component {
   }
   Logout = () => {
     let accessToken = this.state.token;
-    axios.post('/pokedexapp/api/auth/logout/',{}, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
+    axios.post('/api2/api/auth/logout/',{}, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
       alert('Logout successfully');
       this.setState({user: null,modalLogIn:false,token:null});
     }).catch((error) => {
@@ -94,14 +94,14 @@ class App extends Component {
         email: this.email.value,
         password: this.password.value
       }
-      axios.post('/pokedexapp/api/auth/register/', user).then(async (response) => {
+      axios.post('/api2/api/auth/register/', user).then(async (response) => {
         let user = {
           email: this.email.value,
           password: this.password.value
         }
-        axios.post('/pokedexapp/api/auth/login/', user).then(async (response) => {
+        axios.post('/api2/api/auth/login/', user).then(async (response) => {
           let accessToken = response.data.access_token;
-          axios.post('/pokedexapp/api/auth/me/',{}, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
+          axios.post('/api2/api/auth/me/',{}, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
             let user = response.data;
             alert('Successful registration');
             this.setState({user: user,modalSingUp:false,token:accessToken});
@@ -142,8 +142,8 @@ class App extends Component {
       birthdate: this.birthdate.value
     }
     let accessToken = this.state.token;
-    axios.put('/pokedexapp/api/auth/update/', user, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
-        axios.post('/pokedexapp/api/auth/me/',{}, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
+    axios.put('/api2/api/auth/update/', user, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
+        axios.post('/api2/api/auth/me/',{}, {headers: {Authorization: `Bearer ${accessToken}`}}).then(async (response) => {
           let user = response.data;
           alert('Successful update');
           this.setState({user: user,modalProfile:false,token:accessToken});
