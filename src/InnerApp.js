@@ -44,7 +44,7 @@ class InnerApp extends Component {
         if(prevProps.isFavs !== this.props.isFavs || prevProps.user !== this.props.user || prevProps.token !== this.props.token){
             if(this.props.token !== null){
                 let token = this.props.token; 
-                axios.get('http://54.236.255.171/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then((response) => {
+                axios.get('/pokedexapp/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then((response) => {
                     this.setState({favs: response.data.response});
                 }).catch ((error) => {
                     console.log(error);
@@ -102,9 +102,9 @@ class InnerApp extends Component {
             user_id: this.state.user.id,
             ref_api: pokemon.id
         }
-        axios.post('http://54.236.255.171/api/auth/favorite/create/', fav).then(async (response) => {
+        axios.post('/pokedexapp/api/auth/favorite/create/', fav).then(async (response) => {
             let token = this.state.token;
-            axios.get('http://54.236.255.171/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then((response) => {
+            axios.get('/pokedexapp/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then((response) => {
                 this.setState({favs: response.data.response});
                 this.closeModalPokemon();
             }).catch ((error) => {
@@ -117,9 +117,9 @@ class InnerApp extends Component {
     }
     removeFav = (favorite) => {
         let favid = favorite.id; 
-        axios.delete(`http://54.236.255.171/api/auth/favorite/delete/${favid}`).then(async (response) => {
+        axios.delete(`/pokedexapp/api/auth/favorite/delete/${favid}`).then(async (response) => {
             let token = this.state.token;
-            axios.get('http://54.236.255.171/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then((response) => {
+            axios.get('/pokedexapp/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then((response) => {
                 this.setState({favs: response.data.response});
                 this.closeModalPokemon();
             }).catch ((error) => {
@@ -133,7 +133,7 @@ class InnerApp extends Component {
     loadFavs = () => {
         if(this.props.token !== null){
             let token = this.props.token; 
-            axios.get('http://54.236.255.171/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then(async (response) => {
+            axios.get('/pokedexapp/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then(async (response) => {
                 this.setState({favs: response.data.response});
                 let favs = response.data.response;
                 let updatedPokemons = [];
@@ -172,7 +172,7 @@ class InnerApp extends Component {
         });
         if(this.props.token !== null){
             let token = this.props.token; 
-            axios.get('http://54.236.255.171/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then((response) => {
+            axios.get('/pokedexapp/api/auth/favorite/myFavs/',{headers: {Authorization: `Bearer ${token}`}}).then((response) => {
                 this.setState({favs: response.data.response});
             }).catch ((error) => {
                 console.log(error);
