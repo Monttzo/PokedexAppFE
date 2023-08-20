@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'PokemonGB';
+    src: url('../public/fonts/Pokemon_GB.ttf') format('truetype');
+    /* Puedes agregar otros formatos aquí, como woff y woff2 */
+    font-weight: normal;
+    font-style: normal;
+}
