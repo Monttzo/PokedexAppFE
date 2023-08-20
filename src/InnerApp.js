@@ -117,7 +117,7 @@ class InnerApp extends Component {
     }
     removeFav = (favorite) => {
         let favid = favorite.id; 
-        axios.delete(`http://54.236.255.171/api/auth/favorite/delete${favid}`).then(async (response) => {
+        axios.delete(`http://54.236.255.171/api/auth/favorite/delete/${favid}`).then(async (response) => {
             let token = this.state.token;
             axios.get('http://54.236.255.171/api/auth/favorite/myFavs',{headers: {Authorization: `Bearer ${token}`}}).then((response) => {
                 this.setState({favs: response.data.response});
